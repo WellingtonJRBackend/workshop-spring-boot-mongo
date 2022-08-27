@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import wp.mongodb.domain.Post;
 import wp.mongodb.domain.User;
 import wp.mongodb.dto.UserDTO;
 import wp.mongodb.services.UserService;
@@ -55,5 +56,10 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping(value = "/{id}/{posts}")
+    public ResponseEntity<List<Post>> findpost(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
