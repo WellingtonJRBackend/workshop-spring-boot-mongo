@@ -2,7 +2,6 @@ package wp.mongodb.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import wp.mongodb.domain.Post;
@@ -11,8 +10,6 @@ import wp.mongodb.dto.UserDTO;
 import wp.mongodb.services.UserService;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +54,7 @@ public class UserResource {
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping(value = "/{id}/{posts}")
     public ResponseEntity<List<Post>> findpost(@PathVariable String id) {
         User obj = userService.findById(id);
