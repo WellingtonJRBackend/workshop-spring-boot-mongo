@@ -2,9 +2,13 @@ package wp.mongodb.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import wp.mongodb.dto.AuthorDTO;
+import wp.mongodb.dto.CommentDTO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -18,6 +22,8 @@ public class Post implements Serializable {
     private String title;
     private String body;
     private AuthorDTO author;
+
+    private List<CommentDTO> commentDTOS = new ArrayList<>();
 
     public Post() {
     }
@@ -72,6 +78,13 @@ public class Post implements Serializable {
         this.author = author;
     }
 
+    public List<CommentDTO> getCommentDTOS() {
+        return commentDTOS;
+    }
+
+    public void setCommentDTOS(List<CommentDTO> commentDTOS) {
+        this.commentDTOS = commentDTOS;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,6 @@
-package wp.mongodb.domain;
+package wp.mongodb.dto;
+
+import wp.mongodb.domain.User;
 
 import java.io.Serializable;
 

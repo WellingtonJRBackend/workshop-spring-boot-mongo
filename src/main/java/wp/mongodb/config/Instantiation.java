@@ -3,9 +3,10 @@ package wp.mongodb.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import wp.mongodb.domain.AuthorDTO;
+import wp.mongodb.dto.AuthorDTO;
 import wp.mongodb.domain.Post;
 import wp.mongodb.domain.User;
+import wp.mongodb.dto.CommentDTO;
 import wp.mongodb.repository.PostRepository;
 import wp.mongodb.repository.UserRepository;
 import java.text.SimpleDateFormat;
@@ -38,6 +39,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null,sdf.parse("21/03/2018"),"Partiu viagem","vou viajar para São paulo.A braços!!",new AuthorDTO(maria));
         Post post2 = new Post(null,sdf.parse("23/03/2018"),"Bom dia","Acordei feliz hoje ",new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem mano!",sdf.parse("21/03/2018"),new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite",sdf.parse("22/03/2018"),new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("tenha um ótimo dia!",sdf.parse("23/03/2018"),new AuthorDTO(alex));
+
+        post1.getCommentDTOS().addAll(Arrays.asList(c1,c2));
+        post2.getCommentDTOS().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(post1,post2));
 
